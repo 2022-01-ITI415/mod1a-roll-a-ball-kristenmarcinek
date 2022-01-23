@@ -6,7 +6,6 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-
     public float speed = 0;
     public TextMeshProUGUI countText;
 
@@ -14,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private int count;
     private float movementX;
     private float movementY;
+
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
             count = count + 1;
 
             SetCountText();
+            audioSource.Play();
         }
     }
 
