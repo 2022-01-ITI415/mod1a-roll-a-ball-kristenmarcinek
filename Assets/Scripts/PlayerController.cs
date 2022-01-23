@@ -8,10 +8,13 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 0;
     public TextMeshProUGUI countText;
+    public TextMeshProUGUI timeText;
     public GameObject winTextObject;
+    public GameObject timeTextObject;
 
     private Rigidbody rb;
     private int count;
+    private double timer;
     private float movementX;
     private float movementY;
 
@@ -22,9 +25,12 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         count = 0;
+        timer = Time.realtimeSinceStartup;
 
         SetCountText();
+        SetTimeText();
         winTextObject.SetActive(false);
+        timeTextObject.SetActive(false);
     }
 
     // Player Input
@@ -36,6 +42,11 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
     }
 
+    void SetTimeText()
+    {
+        timeText.text = "Time: " + timer.ToString();
+    }
+
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
@@ -43,6 +54,7 @@ public class PlayerController : MonoBehaviour
         if(count >= 12)
         {
             winTextObject.SetActive(true);
+            timeTextObject.SetActive(true);
         }
     }
 
